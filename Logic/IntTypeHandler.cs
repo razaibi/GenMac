@@ -30,7 +30,7 @@ public class IntTypeHandler{
         }
 
         if(segments.ElementAtOrDefault(3) != null){
-            defaultValue = $" = \"{segments[3]}\"";
+            defaultValue = $" = {segments[3]}";
         }
 
         if(segments.ElementAtOrDefault(4) != null){

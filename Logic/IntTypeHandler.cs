@@ -1,16 +1,14 @@
 namespace Logic;
 
-public class StringTypeHandler{
-    public StringTypeHandler(){}
+public class IntTypeHandler{
+    public IntTypeHandler(){}
 
     public static string BuildAttribute(string[] segments){
         string attributeName="";
         string required="";
         string label="";
-        string stringLength="";
         string defaultValue ="";
-        string minLength="";
-        string maxLength="";
+        string range="";
         if(segments.ElementAtOrDefault(0) != null)
         {
             attributeName = Common.Capitalize(segments[0]);
@@ -32,30 +30,27 @@ public class StringTypeHandler{
         }
 
         if(segments.ElementAtOrDefault(3) != null){
-            stringLength = $"[StringLength({segments.ElementAtOrDefault(3)})";
+            defaultValue = $" = \"{segments[3]}\"";
         }
 
         if(segments.ElementAtOrDefault(4) != null){
-            defaultValue = $"\"{segments[4]}\"";
+            if(segments.ElementAtOrDefault(5) != null){
+                range = $"[Range({segments.ElementAtOrDefault(4)}, {segments.ElementAtOrDefault(5)})]";
+            }else{
+                range = $"[Range({segments.ElementAtOrDefault(4)}, Int32.MaxValue)]";
+            }
+            
         }
 
-        if(segments.ElementAtOrDefault(5) != null){
-            minLength = $"[MinLength({segments.ElementAtOrDefault(5)})]";
-        }
-
-        if(segments.ElementAtOrDefault(6) != null){
-            maxLength = $"[MaxLength({segments.ElementAtOrDefault(6)})]";
-        }
+        
 
         return GenerateAttributeString(
-            "string",
+            "int",
             attributeName,
             required,
             label,
-            stringLength,
             defaultValue,
-            minLength,
-            maxLength
+            range
         );
 
     }
@@ -65,17 +60,13 @@ public class StringTypeHandler{
         string attributeName,
         string required,
         string label="",
-        string stringLength="",
         string defaultValue="",
-        string minLength="",
-        string maxLength=""
+        string range=""
     ){
         return @$"
         {required}
         {label}
-        {stringLength}
-        {minLength}
-        {maxLength}
+        {range}
         public {attributeType} {attributeName} {{ get; set; }} { defaultValue }";
     }
 }

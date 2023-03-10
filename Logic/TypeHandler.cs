@@ -54,7 +54,7 @@ public class TypeHandler
                 typeString = "Single";
                 break;
             case "Int":
-                typeString = "Int32";
+                typeString = "int";
                 break;
             case "Int32":
                 typeString = "Int32";
@@ -78,38 +78,15 @@ public class TypeHandler
                 typeString = "String";
                 break;
             case "String":
-                typeString = "Object";
+                typeString = "string";
                 break;
 
             default:
-                typeString = "String";
+                typeString = "string";
                 break;
         }
 
         return typeString;
-    }
-
-    public static string GetDefaultValue(
-        string attributeType,
-        string defaultValue
-    )
-    {
-        string defaultString;
-        switch (attributeType)
-        {
-            case "String":
-                defaultString = $"\"{defaultValue}\"";
-                break;
-            case "Float":
-                defaultString = $"{defaultValue}";
-                break;
-            default:
-                defaultString = $"{defaultValue}";
-                break;
-        }
-
-        return defaultString;
-
     }
 
     public static string HandleType(
@@ -125,12 +102,15 @@ public class TypeHandler
         string attributeString;
         switch (attributeType)
         {
-            case "String":
+            case "string":
                 attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
                 break;
-            case "Float":
-                attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
+            case "int":
+                attributeString = IntTypeHandler.BuildAttribute(segments[1..]);
                 break;
+            // case "Float":
+            //     attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
+            //     break;
             default:
                 attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
                 break;

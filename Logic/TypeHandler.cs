@@ -114,6 +114,9 @@ public class TypeHandler
             case "hasmany":
                 attributeString = HasManyTypeHandler.BuildAttribute(segments[1..]);
                 break;
+            case "belongsto":
+                attributeString = BelongsToTypeHandler.BuildAttribute(segments[1..]);
+                break;
             // case "Float":
             //     attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
             //     break;

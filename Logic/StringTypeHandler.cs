@@ -57,7 +57,6 @@ public class StringTypeHandler{
             minLength,
             maxLength
         );
-
     }
 
     public static string GenerateAttributeString(

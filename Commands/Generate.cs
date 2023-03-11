@@ -4,7 +4,7 @@ using CliFx.Infrastructure;
 using Logic;
 
 
-[Command("gen.model")]
+[Command("csp.gen.model")]
 public class Generate : ICommand{
     [CommandParameter(0, Description = "Name of project.")]
     public string ProjectName { get; init; }="";
@@ -16,11 +16,11 @@ public class Generate : ICommand{
     public IReadOnlyList<String> Attributes { get; set; } = new List<string>();
 
     public ValueTask ExecuteAsync(IConsole console){
-        console.Output.WriteLine(Namespace);
-        console.Output.WriteLine(char.ToUpper(ModelName[0])  + ModelName.Substring(1));
-        foreach (var i in Attributes) {
-            console.Output.WriteLine(i);
-        }
+        // console.Output.WriteLine(Namespace);
+        // console.Output.WriteLine(char.ToUpper(ModelName[0])  + ModelName.Substring(1));
+        // foreach (var i in Attributes) {
+        //     console.Output.WriteLine(i);
+        // }
         ModelProcessor.Process(
             ProjectName,
             Namespace,

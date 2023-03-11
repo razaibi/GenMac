@@ -80,6 +80,9 @@ public class TypeHandler
             case "String":
                 typeString = "string";
                 break;
+            case "HasMany":
+                typeString = "hasmany";
+                break;
 
             default:
                 typeString = "string";
@@ -96,7 +99,7 @@ public class TypeHandler
         string attributeType = "";
         if (segments.ElementAtOrDefault(0) != null)
         {
-            attributeType = GetNormalizedType(segments[0]);
+            attributeType = segments[0].ToLower();
         }
 
         string attributeString;
@@ -107,6 +110,9 @@ public class TypeHandler
                 break;
             case "int":
                 attributeString = IntTypeHandler.BuildAttribute(segments[1..]);
+                break;
+            case "hasmany":
+                attributeString = HasManyTypeHandler.BuildAttribute(segments[1..]);
                 break;
             // case "Float":
             //     attributeString = StringTypeHandler.BuildAttribute(segments[1..]);

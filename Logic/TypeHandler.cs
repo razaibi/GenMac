@@ -120,6 +120,9 @@ public class TypeHandler
             case "bool":
                 attributeString = BooleanTypeHandler.BuildAttribute(segments[1..]);
                 break;
+            case "datetime":
+                attributeString = DateTimeTypeHandler.BuildAttribute(segments[1..]);
+                break;
             // case "Float":
             //     attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
             //     break;

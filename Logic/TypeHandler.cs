@@ -117,6 +117,9 @@ public class TypeHandler
             case "belongsto":
                 attributeString = BelongsToTypeHandler.BuildAttribute(segments[1..]);
                 break;
+            case "bool":
+                attributeString = BooleanTypeHandler.BuildAttribute(segments[1..]);
+                break;
             // case "Float":
             //     attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
             //     break;

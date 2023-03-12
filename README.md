@@ -27,13 +27,19 @@ hasmany:<attribute-name>:<label:optional>
 belongsto:<entity-name>:<attribute-name>:<label:optional>
 ```
 
+### For Boolean Attribute
+
+```bash
+bool:<attribute-name>:<required>:<label:optional>:<default:optional>
+```
+
 
 ## How to Use
 
 Example
 
 ```bash
-dotnet run csp.model models sample string:title string:desc:required:Description:40:NA:3:40 int:count:required:Count:10:5:50 hasmany:locations:Locations belongsto:organization:organization-id:Organization
+genmac csp.model models sample string:title string:desc:required:Description:40:NA:3:40 int:count:required:Count:10:5:50 hasmany:locations:Locations belongsto:organization:organization-id:Organization bool:is-archived:req:"Is Archived":false
 ```
 
 ## Status

@@ -1,3 +1,4 @@
+using CaseExtensions;
 namespace Logic;
 
 public class ModelProcessor{
@@ -100,25 +101,33 @@ public class ModelProcessor{
     }
 
 
-    public static void Process(
-        string projectName,
+    public async static ValueTask Process(
         string namespaceName,
         string modelName,
         IReadOnlyList<string> attributesList
     ){
-        projectName = Capitalize(projectName);
         namespaceName = Capitalize(namespaceName);
         modelName = Capitalize(modelName);
-
+        string attributeString = "";
         foreach (var a in attributesList){
             string[] segments = a.Split(":", StringSplitOptions.TrimEntries);
-
-
-            TypeHandler.HandleType(
+            attributeString += TypeHandler.HandleType(
                 segments
-            );
-            
+            ) + "\n";
         }
+        string outputString = @$"using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace {namespaceName};
+
+public class {modelName}{{
+    [Key]
+    public int {modelName.ToPascalCase()}Id {{ get; set; }}
+{attributeString}
+}}
+";
+        await File.WriteAllTextAsync($"{modelName}.cs", outputString);
     }
 
 

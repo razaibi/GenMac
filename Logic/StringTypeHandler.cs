@@ -24,27 +24,27 @@ public class StringTypeHandler{
                 requiredTag == "true" ||
                 requiredTag == "required"
             )
-            required = $"[Required()]";
+            required = $"\t[Required()]\n";
         }
 
         if(segments.ElementAtOrDefault(2) != null){
-            label = $"[Display(Name = \"{segments.ElementAtOrDefault(2)}\")]";
+            label = $"\t[Display(Name = \"{segments.ElementAtOrDefault(2)}\")]\n";
         }
 
         if(segments.ElementAtOrDefault(3) != null){
-            stringLength = $"[StringLength({segments.ElementAtOrDefault(3)})";
+            stringLength = $"\t[StringLength({segments.ElementAtOrDefault(3)})]\n";
         }
 
         if(segments.ElementAtOrDefault(4) != null){
-            defaultValue = $"\"{segments[4]}\"";
+            defaultValue = $"= \"{segments[4]}\";";
         }
 
         if(segments.ElementAtOrDefault(5) != null){
-            minLength = $"[MinLength({segments.ElementAtOrDefault(5)})]";
+            minLength = $"\t[MinLength({segments.ElementAtOrDefault(5)})]\n";
         }
 
         if(segments.ElementAtOrDefault(6) != null){
-            maxLength = $"[MaxLength({segments.ElementAtOrDefault(6)})]";
+            maxLength = $"\t[MaxLength({segments.ElementAtOrDefault(6)})]\n";
         }
 
         return GenerateAttributeString(
@@ -69,12 +69,6 @@ public class StringTypeHandler{
         string minLength="",
         string maxLength=""
     ){
-        return @$"
-        {required}
-        {label}
-        {stringLength}
-        {minLength}
-        {maxLength}
-        public {attributeType} {attributeName} {{ get; set; }} { defaultValue }";
+        return $"{required}{label}{stringLength}{minLength}{maxLength}\tpublic {attributeType} {attributeName} {{ get; set; }} { defaultValue }";
     }
 }

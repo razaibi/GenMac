@@ -19,11 +19,11 @@ public class BelongsToTypeHandler{
         if(segments.ElementAtOrDefault(1) != null)
         {
             attributeName = segments[1].ToPascalCase();
-            foreignKeyTag = $"[ForeignKey(\"{attributeName}\")]";
+            foreignKeyTag = $"\t[ForeignKey(\"{attributeName}\")]\n";
         }
 
         if(segments.ElementAtOrDefault(2) != null){
-            label = $"[Display(Name = \"{segments.ElementAtOrDefault(2)}\")]";
+            label = $"\t[Display(Name = \"{segments.ElementAtOrDefault(2)}\")]\n";
         }
 
         return GenerateAttributeString(
@@ -41,11 +41,8 @@ public class BelongsToTypeHandler{
         string foreignKeyTag,
         string label
     ){
-        return @$"
-        {label}
-        {foreignKeyTag}
-        public int {attributeName} {{ get; set; }}
-        {label}
-        public virtual {entityName}? {entityName} {{ get; set; }}";
+        var firstLine = $"{label}{foreignKeyTag}\tpublic int {attributeName} {{ get; set; }}";
+        var secondLine = $"\n{label}\tpublic virtual {entityName}? {entityName} {{ get; set; }}";
+        return firstLine + secondLine;
     }
 }

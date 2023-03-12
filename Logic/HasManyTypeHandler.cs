@@ -18,7 +18,7 @@ public class HasManyTypeHandler{
         }
 
         if(segments.ElementAtOrDefault(1) != null){
-            label = $"[Display(Name = \"{segments.ElementAtOrDefault(1)}\")]";
+            label = $"\t[Display(Name = \"{segments.ElementAtOrDefault(1)}\")]\n";
         }
 
         return GenerateAttributeString(
@@ -34,8 +34,6 @@ public class HasManyTypeHandler{
         string attributePluralName,
         string label
     ){
-        return @$"
-        {label}
-        public virtual List<{attributeSingularName}> {attributePluralName} {{ get; set; }} = new List<{attributeSingularName}>();";
+        return $"{label}\tpublic virtual List<{attributeSingularName}> {attributePluralName} {{ get; set; }} = new List<{attributeSingularName}>();";
     }
 }

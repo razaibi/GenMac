@@ -22,27 +22,24 @@ public class IntTypeHandler{
                 requiredTag == "true" ||
                 requiredTag == "required"
             )
-            required = $"[Required()]";
+            required = $"\t[Required()]\n";
         }
 
         if(segments.ElementAtOrDefault(2) != null){
-            label = $"[Display(Name = \"{segments.ElementAtOrDefault(2)}\")]";
+            label = $"\t[Display(Name = \"{segments.ElementAtOrDefault(2)}\")]\n";
         }
 
         if(segments.ElementAtOrDefault(3) != null){
-            defaultValue = $" = {segments[3]}";
+            defaultValue = $" = {segments[3]};";
         }
 
         if(segments.ElementAtOrDefault(4) != null){
             if(segments.ElementAtOrDefault(5) != null){
-                range = $"[Range({segments.ElementAtOrDefault(4)}, {segments.ElementAtOrDefault(5)})]";
+                range = $"\t[Range({segments.ElementAtOrDefault(4)}, {segments.ElementAtOrDefault(5)})]\n";
             }else{
-                range = $"[Range({segments.ElementAtOrDefault(4)}, Int32.MaxValue)]";
+                range = $"\t[Range({segments.ElementAtOrDefault(4)}, Int32.MaxValue)]\n";
             }
-            
         }
-
-        
 
         return GenerateAttributeString(
             "int",
@@ -63,10 +60,6 @@ public class IntTypeHandler{
         string defaultValue="",
         string range=""
     ){
-        return @$"
-        {required}
-        {label}
-        {range}
-        public {attributeType} {attributeName} {{ get; set; }} { defaultValue }";
+        return $"{required}{label}{range}\tpublic {attributeType} {attributeName} {{ get; set; }} { defaultValue }";
     }
 }

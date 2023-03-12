@@ -124,7 +124,6 @@ public class TypeHandler
                 attributeString = StringTypeHandler.BuildAttribute(segments[1..]);
                 break;
         }
-        Console.WriteLine(attributeString);
-        return "x";
+        return attributeString;
     }
 }

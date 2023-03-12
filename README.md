@@ -1,6 +1,12 @@
 # GenMac
 CLI driven code generator.
 
+## Installation
+
+```bash
+dotnet tool install --global GenMac
+```
+
 ## Syntax
 
 ### For String Attribute

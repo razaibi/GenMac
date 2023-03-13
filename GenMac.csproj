@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.0.4</Version>
+    <Version>0.0.5</Version>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>genmac</ToolCommandName>
     <Title>GenMac : CLI based code generator.</Title>
@@ -30,5 +29,4 @@
     <None Include="README.md" Pack="true" PackagePath=""/>
     <None Include="LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
-
 </Project>
